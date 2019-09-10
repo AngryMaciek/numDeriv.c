@@ -6,28 +6,25 @@
 // 15.07.2019
 //
 
+// These are the definitions of library functions.
+// Test the code with compilation into an object file:
+// $ gcc numDeriv.c -c
 
+
+// This file defines the interface declared in the following header.
+// It is good to put that information here to avoid potential errors
+// (eg. inconsistency between .h and .c)
+#include "numDeriv.h"
+
+
+// Headers from C standard library that I need
+// for the implementation of numDeriv functions:
+// (they are protected by include guards)
 #include <stdlib.h>
-#include <stdbool.h>
 #include <stdio.h>
 #include <math.h>
-#include <string.h>
 
 
-/*
-Calculates gradient of a given objective function by Richardson approximation
-Arguments:
- - objective function (N*double -> double)
- - number of arguments of the objective function
- - array of the arguments at which gradient should be evaluated
- - array for the gradient to be updated
- - pointer to a structure with all input/parameters for the objective function
- - Richardsons: eps value for the initial approximation of arguments less then zero_tol, def=1e-4
- - Richardsons: d gives the fraction of argument to use for the initial approximation, def=1e-4
- - Richardsons: zero.tol is the tolerance for deciding which elements of arguments are zero, def=2.220446e-16/7e-7
- - Richardsons: r gives the number of Richardson improvement iterations, def=4
- - Richardsons: v is the reduction factor, def=2 
-*/
 void gradient(double(*f)(unsigned short n_args, double* args, void* box), 
               unsigned short n_args, double* args, double* grad, void* box,
               double eps, double d, double zero_tol, unsigned short r, unsigned short v){
@@ -111,20 +108,6 @@ void gradient(double(*f)(unsigned short n_args, double* args, void* box),
 }
 
 
-/*
- Generate an array of function derivative information.
- Arguments:
- - objective function (N*double -> double)
- - number of arguments of the objective function (n_args)
- - array of the arguments at which gradient should be evaluated
- - array for the first der. + lower triangle of Hessian: size = n_args*(n_args+3)/2
- - pointer to a structure with all input/parameters for the objective function
- - Richardsons: eps value for the initial approximation of arguments less then zero_tol, def=1e-4
- - Richardsons: d gives the fraction of argument to use for the initial approximation, def=1e-4
- - Richardsons: zero.tol is the tolerance for deciding which elements of arguments are zero, def=2.220446e-16/7e-7
- - Richardsons: r gives the number of Richardson improvement iterations, def=4
- - Richardsons: v is the reduction factor, def=2 
- */
 void genD(double(*f)(unsigned short n_args, double* args, void* box), 
               unsigned short n_args, double* args, double* D, void* box,
               double eps, double d, double zero_tol, unsigned short r, unsigned short v){
@@ -247,20 +230,6 @@ void genD(double(*f)(unsigned short n_args, double* args, void* box),
 }
 
 
-/*
- Generate a Hessian matrix.
- Arguments:
- - objective function (N*double -> double)
- - number of arguments of the objective function (n_args)
- - array of the arguments at which gradient should be evaluated
- - pointer to the 2D array for the Hessian matrix: size = n_args*n_args
- - pointer to a structure with all input/parameters for the objective function
- - Richardsons: eps value for the initial approximation of arguments less then zero_tol, def=1e-4
- - Richardsons: d gives the fraction of argument to use for the initial approximation, def=1e-4
- - Richardsons: zero.tol is the tolerance for deciding which elements of arguments are zero, def=2.220446e-16/7e-7
- - Richardsons: r gives the number of Richardson improvement iterations, def=4
- - Richardsons: v is the reduction factor, def=2 
- */
 void hessian(double(*f)(unsigned short n_args, double* args, void* box), 
           unsigned short n_args, double* args, double* H, void* box,
           double eps, double d, double zero_tol, unsigned short r, unsigned short v){
@@ -287,5 +256,3 @@ void hessian(double(*f)(unsigned short n_args, double* args, void* box),
   
   free(D);
 }
-
-

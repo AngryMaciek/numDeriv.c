@@ -6,9 +6,14 @@
 // 15.07.2019
 //
 
-#include "numDeriv.c"
+// include the library header
+#include "numDeriv.h"
+
+// includes from standard C lubrary required for this file
 #include <math.h>
 #include <stdio.h>
+
+// define a constant 
 #ifndef M_PI
     #define M_PI 3.14159265358979323846
 #endif
