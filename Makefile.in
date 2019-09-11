@@ -7,33 +7,46 @@
 # 15.07.2019
 #
 
+CC = gcc
+CFLAGS = -O2
+SRC = numDeriv.c
+HDR = $(SRC:.c=.h)
+OBJ = $(SRC:.c=.o)
+LIB = $(OBJ:.o=.a)
+
+.PHONY: all install clean uninstall
+
 # =========================================================
 # Build
 # =========================================================
 
-all: numDeriv.a
+all: $(LIB)
 
 # Create an object file
-numDeriv.o:
-	gcc -c -o numDeriv.o numDeriv.c
+$(OBJ):
+	$(CC) $(CFLAGS) -c -o $@ $(SRC)
 
 # Create a static library file
-numDeriv.a: numDeriv.o
-	ar rcs numDeriv.a numDeriv.o
+$(LIB): $(OBJ)
+	ar rcs $@ $<
 
 # =========================================================
 # Install
 # =========================================================
 
-install: {LIB_DIR}/numDeriv.a
+install: {LIB_DIR}/$(LIB) {LIB_DIR}/$(HDR)
 
 # Create top-level directory for the library
 {LIB_DIR}:
-	mkdir -p {LIB_DIR}
+	mkdir -p $@
 
 # Copy the library file into the directory
-{LIB_DIR}/numDeriv.a: numDeriv.a {LIB_DIR}
-	cp numDeriv.a {LIB_DIR}/numDeriv.a
+{LIB_DIR}/$(LIB): $(LIB) {LIB_DIR}
+	cp $< $@
+
+# Copy the header file into the directory
+{LIB_DIR}/$(HDR): $(HDR) {LIB_DIR}
+	cp $< $@
 
 # =========================================================
 # Clean
@@ -41,8 +54,8 @@ install: {LIB_DIR}/numDeriv.a
 
 # Remove the build files
 clean:
-	rm -f numDeriv.o;
-	rm -f numDeriv.a;
+	rm -f $(OBJ);
+	rm -f $(LIB);
 
 # =========================================================
 # Uninstall
@@ -50,7 +63,8 @@ clean:
 
 # Remove the top-level static library
 uninstall:
-	rm -f {LIB_DIR}/numDeriv.a
+	rm -f {LIB_DIR}/$(LIB);
+	rm -f {LIB_DIR}/$(HDR);
 	if [ $$(ls -a1 {LIB_DIR} | wc -l) == 2 ]; then \
 		rm -rf {LIB_DIR}; \
 	fi

@@ -14,4 +14,4 @@ LIB_DIR="~/lib"
 
 LIB_DIR_ADJUSTED=${LIB_DIR/\//\\/}
 SED_COMMAND="s/{LIB_DIR}/$LIB_DIR_ADJUSTED/g"
-sed $SED_COMMAND < Makefile.in | tail -n 47 > Makefile
+sed $SED_COMMAND < Makefile.in | tail -n 61 > Makefile
