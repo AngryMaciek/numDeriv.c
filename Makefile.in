@@ -34,18 +34,26 @@ $(LIB): $(OBJ)
 # Install
 # =========================================================
 
-install: {LIB_DIR}/$(LIB) {LIB_DIR}/$(HDR)
+install: {PREFIX}/lib/$(LIB) {PREFIX}/include/$(HDR)
 
-# Create top-level directory for the library
-{LIB_DIR}:
-	mkdir -p $@
+# Create top-level directory for the libraries
+{PREFIX}:
+	mkdir -p $@;
 
-# Copy the library file into the directory
-{LIB_DIR}/$(LIB): $(LIB) {LIB_DIR}
+# Create top-level directory for the static library files
+{PREFIX}/lib:
+	mkdir -p $@;
+
+# Create top-level directory for the headers
+{PREFIX}/include:
+	mkdir -p $@;
+
+# Copy the library file into the right directory
+{PREFIX}/lib/$(LIB): $(LIB) {PREFIX}/lib
 	cp $< $@
 
-# Copy the header file into the directory
-{LIB_DIR}/$(HDR): $(HDR) {LIB_DIR}
+# Copy the header file into the right directory
+{PREFIX}/include/$(HDR): $(HDR) {PREFIX}/include
 	cp $< $@
 
 # =========================================================
@@ -61,10 +69,16 @@ clean:
 # Uninstall
 # =========================================================
 
-# Remove the top-level static library
+# Remove the top-level directories
 uninstall:
-	rm -f {LIB_DIR}/$(LIB);
-	rm -f {LIB_DIR}/$(HDR);
-	if [ $$(ls -a1 {LIB_DIR} | wc -l) == 2 ]; then \
-		rm -rf {LIB_DIR}; \
-	fi
+	rm -f {PREFIX}/lib/$(LIB);
+	rm -f {PREFIX}/include/$(HDR);
+	if [ $$(ls -a1 {PREFIX}/lib | wc -l) == 2 ]; then \
+		rm -rf {PREFIX}/lib; \
+	fi;
+	if [ $$(ls -a1 {PREFIX}/include | wc -l) == 2 ]; then \
+		rm -rf {PREFIX}/include; \
+	fi;
+	if [ $$(ls -a1 {PREFIX} | wc -l) == 2 ]; then \
+		rm -rf {PREFIX}; \
+	fi;

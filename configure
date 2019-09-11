@@ -8,10 +8,10 @@
 
 # =========================================================
 
-LIB_DIR="~/lib"
+PREFIX="~/lib"
 
 # =========================================================
 
-LIB_DIR_ADJUSTED=${LIB_DIR/\//\\/}
-SED_COMMAND="s/{LIB_DIR}/$LIB_DIR_ADJUSTED/g"
-sed $SED_COMMAND < Makefile.in | tail -n 61 > Makefile
+PREFIX_ADJUSTED=${PREFIX/\//\\/}
+SED_COMMAND="s/{PREFIX}/$PREFIX_ADJUSTED/g"
+sed $SED_COMMAND < Makefile.in | tail -n 75 > Makefile
