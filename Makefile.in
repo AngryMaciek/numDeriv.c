@@ -1,0 +1,56 @@
+#
+# Makefile template for build and
+# installation of the C library.
+#
+# Maciej Bak
+# Swiss Institute of Bioinformatics
+# 15.07.2019
+#
+
+# =========================================================
+# Build
+# =========================================================
+
+all: numDeriv.a
+
+# Create an object file
+numDeriv.o:
+	gcc -c -o numDeriv.o numDeriv.c
+
+# Create a static library file
+numDeriv.a: numDeriv.o
+	ar rcs numDeriv.a numDeriv.o
+
+# =========================================================
+# Install
+# =========================================================
+
+install: {LIB_DIR}/numDeriv.a
+
+# Create top-level directory for the library
+{LIB_DIR}:
+	mkdir -p {LIB_DIR}
+
+# Copy the library file into the directory
+{LIB_DIR}/numDeriv.a: numDeriv.a {LIB_DIR}
+	cp numDeriv.a {LIB_DIR}/numDeriv.a
+
+# =========================================================
+# Clean
+# =========================================================
+
+# Remove the build files
+clean:
+	rm -f numDeriv.o;
+	rm -f numDeriv.a;
+
+# =========================================================
+# Uninstall
+# =========================================================
+
+# Remove the top-level static library
+uninstall:
+	rm -f {LIB_DIR}/numDeriv.a
+	if [ $$(ls -a1 {LIB_DIR} | wc -l) == 2 ]; then \
+		rm -rf {LIB_DIR}; \
+	fi
