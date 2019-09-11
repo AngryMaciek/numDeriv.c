@@ -8,7 +8,7 @@
 #
 
 CC = gcc
-CFLAGS = -O2
+CFLAGS = -O2 -std=c99
 SRC = numDeriv.c
 HDR = $(SRC:.c=.h)
 OBJ = $(SRC:.c=.o)
@@ -73,12 +73,12 @@ clean:
 uninstall:
 	rm -f {PREFIX}/lib/$(LIB);
 	rm -f {PREFIX}/include/$(HDR);
-	if [ $$(ls -a1 {PREFIX}/lib | wc -l) == 2 ]; then \
+	if [ $$(ls -a1 {PREFIX}/lib | wc -l)==2 ]; then \
 		rm -rf {PREFIX}/lib; \
 	fi;
-	if [ $$(ls -a1 {PREFIX}/include | wc -l) == 2 ]; then \
+	if [ $$(ls -a1 {PREFIX}/include | wc -l)==2 ]; then \
 		rm -rf {PREFIX}/include; \
 	fi;
-	if [ $$(ls -a1 {PREFIX} | wc -l) == 2 ]; then \
+	if [ $$(ls -a1 {PREFIX} | wc -l)==2 ]; then \
 		rm -rf {PREFIX}; \
 	fi;

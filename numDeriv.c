@@ -8,7 +8,7 @@
 
 // These are the definitions of library functions.
 // Test the code with compilation into an object file:
-// $ gcc numDeriv.c -c
+// $ gcc numDeriv.c -c -std=c99
 
 
 // This file defines the interface declared in the following header.

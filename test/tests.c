@@ -7,7 +7,7 @@
 //
 
 // include the library header
-#include "numDeriv.h"
+#include <numDeriv.h>
 
 // includes from standard C lubrary required for this file
 #include <math.h>
