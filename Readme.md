@@ -24,7 +24,8 @@ To build and install a static library on macOS and Linux systems with the prepar
  1. Run `./configure` to generate a full Makefile. By default the library will be installed under `~/lib` (compiled file under `~/lib/lib`, header file under `~/lib/include`). The prefix path might be adjusted in the configure file if needed.
  2. Run `make` to build a static library.
  3. Run `make install` to copy the files into `~/lib`.
- 4. Run `make clean` to remove the build files from the working directory.
+ 4. Run `make clean` to remove the build files from the working directory.  
+ 
 In order to remove the library run: `make uninstall`.
 
 Once installed the library can be tested by :
