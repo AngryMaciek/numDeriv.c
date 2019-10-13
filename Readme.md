@@ -39,6 +39,6 @@ In general, while compiling another source code that utilizes numDeriv functions
 The library has been tested on macOS 10.14.6 with clang version 4.0.1 and Ubuntu 14.04.4 with gcc 4.8.4. The results have been compared to exact solutions as well as approximations calculated in R.
 
 ## License
-GNU General Public License 
+GNU General Public License v3.0
 
 [link1]: <https://cran.r-project.org/web/packages/numDeriv/index.html>
