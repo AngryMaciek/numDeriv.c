@@ -15,8 +15,9 @@ before_script:
   - make clean
 
 script:
-  - gcc --version
-  - make --version
+  - cd test
+  - gcc tests.c -I ~/lib/include/ ~/lib/lib/numDeriv.a -o exe -std=c99 -lm
+  - ./exe
 
 after_script:
   - make uninstall
