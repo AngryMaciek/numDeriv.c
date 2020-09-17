@@ -1,3 +1,6 @@
+[![Build Status](https://travis-ci.org/AngryMaciek/numDeriv.c.svg?branch=master)](https://travis-ci.org/AngryMaciek/numDeriv.c)
+[![GitHub license](https://img.shields.io/github/license/AngryMaciek/numDeriv.c)](https://github.com/AngryMaciek/numDeriv.c/blob/master/LICENSE)
+
 # numDeriv.c: Reimplementation of the numDeriv R library into C language
 *Maciej Bak*  
 *Swiss Institute of Bioinformatics*
@@ -36,7 +39,7 @@ $ ./exe
 ```
 In general, while compiling another source code that utilizes numDeriv functions one has to include the header file as `<#include numDeriv.h>`  (and provide information to the linker about its path) and explicitly state the full path to the static library.
 
-The library has been tested on macOS 10.14.6 with clang version 4.0.1 and Ubuntu 14.04.4 with gcc 4.8.4. The results have been compared to exact solutions as well as approximations calculated in R.
+Additionally to the Travis CI builds the library has been tested on macOS 10.14.6 with clang version 4.0.1 and Ubuntu 14.04.4 with gcc 4.8.4. The results have been compared to exact solutions as well as approximations calculated in R.
 
 ## License
 GNU General Public License v3.0
