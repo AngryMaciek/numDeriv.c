@@ -6,9 +6,7 @@ os:
 
 install:
   - if [ "$TRAVIS_OS_NAME" = "linux" ]; then sudo apt update; fi
-  - if [ "$TRAVIS_OS_NAME" = "linux" ]; then sudo apt install r-base-core; fi
   - if [ "$TRAVIS_OS_NAME" = "osx" ]; then brew update; fi
-  - if [ "$TRAVIS_OS_NAME" = "osx" ]; then brew install r; fi
 
 #before_script:
 #  - sudo R -e 'install.packages(c("Rcpp", "numDeriv", "tictoc"), repos="http://cran.us.r-project.org")'
