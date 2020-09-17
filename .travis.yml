@@ -8,9 +8,15 @@ install:
   - if [ "$TRAVIS_OS_NAME" = "linux" ]; then sudo apt update; fi
   - if [ "$TRAVIS_OS_NAME" = "osx" ]; then brew update; fi
 
-#before_script:
-#  - sudo R -e 'install.packages(c("Rcpp", "numDeriv", "tictoc"), repos="http://cran.us.r-project.org")'
+before_script:
+  - ./configure
+  - make
+  - make install
+  - make clean
 
 script:
   - gcc --version
   - make --version
+
+after_script:
+  - make uninstall
