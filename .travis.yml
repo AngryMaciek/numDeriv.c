@@ -14,4 +14,5 @@ install:
 #  - sudo R -e 'install.packages(c("Rcpp", "numDeriv", "tictoc"), repos="http://cran.us.r-project.org")'
 
 script:
-  - echo 123
+  - gcc --version
+  - make --version
