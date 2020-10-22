@@ -37,7 +37,7 @@ $ cd test
 $ gcc tests.c -I ~/lib/include/ ~/lib/lib/numDeriv.a -o exe -std=c99 -lm
 $ ./exe
 ```
-In general, while compiling another source code that utilizes numDeriv functions one has to include the header file as `<#include numDeriv.h>`  (and provide information to the linker about its path) and explicitly state the full path to the static library.
+In general, while compiling another source code that utilizes numDeriv functions one has to include the header file as `#include <numDeriv.h>`  (and provide information to the linker about its path) and explicitly state the full path to the static library.
 
 Additionally to the Travis CI builds the library has been tested on macOS 10.14.6 with clang version 4.0.1 and Ubuntu 14.04.4 with gcc 4.8.4. The results have been compared to exact solutions as well as approximations calculated in R.
 
